@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<definitions name="AvaluoService"
+    targetNamespace="http://localhost:8000/soap"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="http://localhost:8000/soap"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+<message name="recibirViviendaRequest"/>
+<message name="recibirViviendaResponse"/>
+
+<portType name="AvaluoPortType">
+    <operation name="recibirVivienda">
+        <input message="tns:recibirViviendaRequest"/>
+        <output message="tns:recibirViviendaResponse"/>
+    </operation>
+</portType>
+
+<binding name="AvaluoBinding" type="tns:AvaluoPortType">
+    <soap:binding style="document"
+    transport="http://schemas.xmlsoap.org/soap/http"/>
+
+    <operation name="recibirVivienda">
+        <soap:operation soapAction="recibirVivienda"/>
+        <input>
+            <soap:body use="literal"/>
+        </input>
+        <output>
+            <soap:body use="literal"/>
+        </output>
+    </operation>
+
+</binding>
+
+<service name="AvaluoService">
+    <port name="AvaluoPort"
+    binding="tns:AvaluoBinding">
+        <soap:address location="http://localhost:8000/api/soap/recibir-vivienda"/>
+    </port>
+</service>
+
+</definitions>
